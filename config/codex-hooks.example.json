@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/code/prompt-sharpener/hooks/sharpen_hook.py",
+            "commandWindows": "python C:/Users/YOU/code/prompt-sharpener/hooks/sharpen_hook.py",
+            "timeout": 10,
+            "statusMessage": "Checking prompt"
+          }
+        ]
+      }
+    ]
+  }
+}
