@@ -39,11 +39,15 @@ REPLY = re.compile(
     r"run it|edit it|copy it|run|edit|copy)[\s.!]*$"
 )
 
-# Answers to numbered questions, such as "1 yes, 2 no" or "2: the second".
-NUMBERED_ANSWER = re.compile(r"(?i)^\s*(q?\d+)\s*[:.)\-]?\s")
+# Answers to numbered questions, such as "1 yes, 2 no" or "Q2: skip". A
+# number alone is not enough: "2 bugs need fixing" is a real prompt.
+NUMBERED_ANSWER = re.compile(
+    r"(?i)^\s*q?\d{1,2}\s*[:.)\-]?\s*"
+    r"(y|n|yes|yep|yeah|no|nope|ok|okay|sure|skip|both|none|agree|recommended)\b"
+)
 
-# A bare file path or glob.
-PATH_ONLY = re.compile(r"^[./~][\w/.*\- ]+$")
+# A bare file path or glob, Unix or Windows style.
+PATH_ONLY = re.compile(r"^(?:[A-Za-z]:[\\/]|[./~\\])[\w\\/.*\- ]+$")
 
 NOTE = """Prompt check (sharpen-prompt hook). Before acting, judge the user's latest message against the whole conversation.
 

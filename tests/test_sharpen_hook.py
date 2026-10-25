@@ -44,6 +44,9 @@ class ShouldCheckTest(unittest.TestCase):
             "deploy",
             "make the export faster",
             "Refactor getUserById in src/api/users.ts to async/await",
+            "2026 release planning",
+            "2 bugs need fixing",
+            "1. Fix the login bug",
         ]:
             self.assertTrue(sharpen_hook.should_check(prompt), prompt)
 
@@ -52,7 +55,7 @@ class ShouldCheckTest(unittest.TestCase):
             self.assertFalse(sharpen_hook.should_check(prompt), prompt)
 
     def test_skips_numbered_answers(self):
-        for prompt in ["1 yes, 2 no", "2: the second one", "1. yes", "Q1 yes"]:
+        for prompt in ["1 yes, 2 no", "2: skip", "1. yes", "Q1 yes", "3 recommended"]:
             self.assertFalse(sharpen_hook.should_check(prompt), prompt)
 
     def test_skips_bypass_slash_and_machine_events(self):
@@ -61,7 +64,8 @@ class ShouldCheckTest(unittest.TestCase):
             self.assertFalse(sharpen_hook.should_check(prompt), prompt)
 
     def test_skips_paths_and_empty(self):
-        for prompt in ["./src/app.py", "~/notes/*.md", "", "   "]:
+        for prompt in ["./src/app.py", "~/notes/*.md", "C:\\Users\\me\\src\\app.py",
+                       ".\\src\\app.py", "D:/code/app.py", "", "   "]:
             self.assertFalse(sharpen_hook.should_check(prompt), prompt)
 
 
