@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"C:/Users/cdrac/code/prompt-sharpener/hooks/sharpen_hook.py\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
