@@ -64,9 +64,13 @@ The tests feed the hook payloads shaped like those of both Claude Code and Codex
 
 ## Credits
 
-The ideas, not the code, come from two MIT-licensed projects:
+This project borrows the design of two others. No code was copied: everything here was written from scratch, and it is MIT-licensed too (see `LICENSE`).
 
-- [severity1/claude-code-prompt-improver](https://github.com/severity1/claude-code-prompt-improver): having the AI judge vagueness instead of a keyword filter, researching before asking, the `*` bypass, and skipping harness messages.
-- hairglasses-studio/prompt-improver (archived): the skip filter for short replies, the hook output shape that both tools accept, and the checklist for writing the prompt (concrete values, a reason for each rule, no shouting).
+| Project | License | What we borrowed |
+|---|---|---|
+| [severity1/claude-code-prompt-improver](https://github.com/severity1/claude-code-prompt-improver) (checked at v0.6.3) | MIT, Copyright (c) 2025 severity1 | Having the AI judge vagueness instead of a keyword filter, researching before asking, the `*` bypass, and skipping harness messages |
+| [hairglasses-studio/prompt-improver](https://pkg.go.dev/github.com/hairglasses-studio/prompt-improver) (checked at v0.1.0, now archived and merged into ralphglasses) | MIT, Copyright (c) 2024-2026 hairglasses-studio | The skip filter for short replies, the hook output shape that both tools accept, and the checklist for writing the prompt (concrete values, a reason for each rule, no shouting) |
+
+Both licenses were read from each project's own `LICENSE` file on 2026-10-25.
 
 What's new here is that it works in both tools, the questions are plain text so they work anywhere, and you review the rewritten prompt before anything runs.
