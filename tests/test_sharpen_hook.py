@@ -87,6 +87,10 @@ class ProcessTest(unittest.TestCase):
         payload = dict(CODEX_PAYLOAD, prompt="arregla el café ☕ bug")
         self.assert_note(run_hook(json.dumps(payload, ensure_ascii=False).encode("utf-8")))
 
+    def test_utf8_bom(self):
+        # Windows PowerShell can prepend a byte-order mark when piping.
+        self.assert_note(run_hook(b"\xef\xbb\xbf" + json.dumps(CODEX_PAYLOAD).encode()))
+
     def test_reply_prints_nothing(self):
         result = run_hook(json.dumps(dict(CLAUDE_PAYLOAD, prompt="yes")).encode())
         self.assertEqual((result.returncode, result.stdout), (0, b""))
