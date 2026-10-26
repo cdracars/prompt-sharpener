@@ -91,7 +91,8 @@ def build_output(payload):
 def main():
     try:
         # Decode as UTF-8 ourselves: Windows consoles default to a code page.
-        raw = sys.stdin.buffer.read().decode("utf-8", errors="replace")
+        # utf-8-sig drops the byte-order mark Windows PowerShell may prepend.
+        raw = sys.stdin.buffer.read().decode("utf-8-sig", errors="replace")
         out = build_output(json.loads(raw))
     except Exception:
         out = ""
